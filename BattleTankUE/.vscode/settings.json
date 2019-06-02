@@ -1,0 +1,13 @@
+{
+	"files.exclude": {
+		"C:/Users/lesam/OneDrive/Documents/Unreal Projects/BattleTank/BattleTankUE/.vs": true,
+		"C:/Users/lesam/OneDrive/Documents/Unreal Projects/BattleTank/BattleTankUE/.vscode": true,
+		"C:/Users/lesam/OneDrive/Documents/Unreal Projects/BattleTank/BattleTankUE/Content": true,
+		"C:/Users/lesam/OneDrive/Documents/Unreal Projects/BattleTank/BattleTankUE/Intermediate": true,
+		"C:/Users/lesam/OneDrive/Documents/Unreal Projects/BattleTank/BattleTankUE/Saved": true
+	},
+	"cSpell.ignoreWords": [
+		"api",
+		"battletankue"
+	]
+}
