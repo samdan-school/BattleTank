@@ -4,18 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Public/AimComponent.h"
+
 #include "Tank.generated.h"
 
-class UAimComponent;
-class UTankBarrel;  // Forwared Declaration
-
 UCLASS()
-class BATTLETANKUE_API ATank : public APawn {
+class BATTLETANKUE_API ATank : public APawn
+{
 	GENERATED_BODY()
-
-private:
-	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 120000;
 
 public:
 	void AimAt(FVector HitLocation);
@@ -24,7 +20,7 @@ protected:
 	UAimComponent* AimComponent = nullptr;
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-		void SetBarrelReference(UTankBarrel* Barrel);
+		void SetBarrelReference(UStaticMeshComponent* Barrel);
 
 protected:
 	// Sets default values for this pawn's properties

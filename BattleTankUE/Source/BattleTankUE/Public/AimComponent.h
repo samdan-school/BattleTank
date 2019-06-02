@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Components/StaticMeshComponent.h"
+
 #include "AimComponent.generated.h"
 
-class UTankBarrel; // Forwared Declaration
 
-// Hold barrel's properties and Elavate 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BATTLETANKUE_API UAimComponent : public UActorComponent
 {
@@ -18,14 +18,20 @@ public:
 	// Sets default values for this component's properties
 	UAimComponent();
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 
 private:
-	UTankBarrel* Barrel = nullptr;
+	UStaticMeshComponent* Barrel = nullptr;
 
 public:
-	void SetBarrelReference(UTankBarrel* Barrel);
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void SetBarrelReference(UStaticMeshComponent* Barrel);
+
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
 
 private:
-	void MoveBarrelTowards(FVector AimDirection);
 };

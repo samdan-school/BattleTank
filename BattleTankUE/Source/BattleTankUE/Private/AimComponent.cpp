@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Components/StaticMeshComponent.h"
-#include "Public/TankBarrel.h"
-#include "Kismet/GameplayStatics.h"
+
 #include "Public/AimComponent.h"
 
 // Sets default values for this component's properties
@@ -10,46 +8,38 @@ UAimComponent::UAimComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = false;
+	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
 }
 
-void UAimComponent::SetBarrelReference(UTankBarrel* Barrel)
+
+// Called when the game starts
+void UAimComponent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// ...
+
+}
+
+
+// Called every frame
+void UAimComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	// ...
+}
+
+void UAimComponent::SetBarrelReference(UStaticMeshComponent* Barrel)
 {
 	this->Barrel = Barrel;
+	UE_LOG(LogTemp, Warning, TEXT("Barrel set"));
 }
 
-void UAimComponent::AimAt(FVector HitLocation, float LaunchSpeed)
+void UAimComponent::AimAt(FVector HitLocation)
 {
-	if (!Barrel) { return; }
-
-	FVector OutLaunchVelocity = FVector(0.f);
-	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
-	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity(
-		this,
-		OUT OutLaunchVelocity,
-		StartLocation,
-		HitLocation,
-		LaunchSpeed,
-		ESuggestProjVelocityTraceOption::DoNotTrace
-	);
-
-	if (bHaveAimSolution) {
-		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		MoveBarrelTowards(AimDirection);
-	}
-}
-
-void UAimComponent::MoveBarrelTowards(FVector AimDirection)
-{
-	// Work out difference between current barrel reation and aim Direction
-	auto BarrelRotaion = Barrel->GetForwardVector().Rotation();
-	auto AimAsRotator = AimDirection.Rotation();
-	auto DeltaRotator = AimAsRotator - BarrelRotaion;
-
-	// Move the barrel the right amount this frame
-	// Given a max elevation
-
-	Barrel->Elevate(5);
+	auto BarrelLocation = this->Barrel->GetComponentLocation();
+	UE_LOG(LogTemp, Warning, TEXT("AimComponent  %s from %s."), *(HitLocation.ToString()), *(BarrelLocation.ToString()));
 }
