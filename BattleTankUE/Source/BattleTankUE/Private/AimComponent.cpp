@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Public/AimComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Public/TankBarrel.h"
+#include "Public/TankTurrent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Public/AimComponent.h"
 
 // Sets default values for this component's properties
 UAimComponent::UAimComponent()
@@ -20,6 +21,11 @@ void UAimComponent::SetBarrelReference(UTankBarrel* Barrel)
 	this->Barrel = Barrel;
 }
 
+void UAimComponent::SetTurrentReference(UTankTurrent* Turrent)
+{
+	this->Turrent = Turrent;
+}
+
 void UAimComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
 	if (!Barrel) { return; }
@@ -32,6 +38,9 @@ void UAimComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		StartLocation,
 		HitLocation,
 		LaunchSpeed,
+		false,
+		0,
+		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
 
@@ -44,12 +53,12 @@ void UAimComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 void UAimComponent::MoveBarrelTowards(FVector AimDirection)
 {
 	// Work out difference between current barrel reation and aim Direction
-	auto BarrelRotaion = Barrel->GetForwardVector().Rotation();
-	auto AimAsRotator = AimDirection.Rotation();
-	auto DeltaRotator = AimAsRotator - BarrelRotaion;
+	const auto BarrelRotaion = Barrel->GetForwardVector().Rotation();
+	const auto AimAsRotator = AimDirection.Rotation();
+	const auto DeltaRotator = AimAsRotator - BarrelRotaion;
 
 	// Move the barrel the right amount this frame
 	// Given a max elevation
-
-	Barrel->Elevate(5);
+	Barrel->Elevate(DeltaRotator.Pitch);
+	Turrent->Rotate(DeltaRotator.Yaw);
 }

@@ -7,6 +7,7 @@
 #include "AimComponent.generated.h"
 
 class UTankBarrel; // Forwared Declaration
+class UTankTurrent; // Forwared Declaration
 
 // Hold barrel's properties and Elavate 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
@@ -23,8 +24,12 @@ public:
 private:
 	UTankBarrel* Barrel = nullptr;
 
+	UTankTurrent* Turrent = nullptr;
+
 public:
 	void SetBarrelReference(UTankBarrel* Barrel);
+
+	void SetTurrentReference(UTankTurrent* Turrent);
 
 private:
 	void MoveBarrelTowards(FVector AimDirection);

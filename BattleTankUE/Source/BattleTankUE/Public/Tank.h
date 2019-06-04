@@ -7,7 +7,8 @@
 #include "Tank.generated.h"
 
 class UAimComponent;
-class UTankBarrel;  // Forwared Declaration
+class UTankBarrel;
+class UTankTurrent;
 
 UCLASS()
 class BATTLETANKUE_API ATank : public APawn {
@@ -25,6 +26,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetBarrelReference(UTankBarrel* Barrel);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+		void SetTurrentReference(UTankTurrent* Turrent);
 
 protected:
 	// Sets default values for this pawn's properties

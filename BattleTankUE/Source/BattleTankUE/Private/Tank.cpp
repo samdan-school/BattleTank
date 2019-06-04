@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Public/Tank.h"
 #include "Public/AimComponent.h"
+#include "Public/Tank.h"
 
 // Sets default values
 ATank::ATank() {
@@ -13,6 +13,10 @@ ATank::ATank() {
 
 void ATank::SetBarrelReference(UTankBarrel* Barrel) {
 	this->AimComponent->SetBarrelReference(Barrel);
+}
+
+void ATank::SetTurrentReference(UTankTurrent* Turrent) {
+	this->AimComponent->SetTurrentReference(Turrent);
 }
 
 // Called when the game starts or when spawned
