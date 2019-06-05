@@ -16,7 +16,7 @@ class BATTLETANKUE_API UTankTurrent : public UStaticMeshComponent
 
 public:
 	UPROPERTY(Editanywhere, Category = Setup)
-		float MaxDegreesPerSecond = 10.f;
+		float MaxDegreesPerSecond = 25.f;
 
 	void Rotate(float RelativeSpeed);
 };
