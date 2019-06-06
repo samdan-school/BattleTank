@@ -19,6 +19,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 4000;
 
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float ReloadTimeInSeconds = 3;
+
+	double LastFireTime = 0;
 	UPROPERTY(EditAnywhere, Category = Setup)
 		//UClass* ProjectileBlueprint; // Alternative TSubClass
 		TSubclassOf<AProjectile> ProjectileBlueprint;
@@ -28,6 +32,9 @@ private:
 public:
 	void AimAt(FVector HitLocation);
 
+	UFUNCTION(BlueprintCallable, Category = Input)
+		void Fire();
+
 protected:
 	UAimComponent* AimComponent = nullptr;
 
@@ -36,9 +43,6 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetTurrentReference(UTankTurrent* Turrent);
-
-	UFUNCTION(BlueprintCallable, Category = Input)
-		void Fire();
 
 protected:
 	// Sets default values for this pawn's properties
