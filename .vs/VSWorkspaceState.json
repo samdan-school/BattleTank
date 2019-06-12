@@ -3,8 +3,10 @@
     "",
     "\\BattleTankUE",
     "\\BattleTankUE\\Source",
-    "\\BattleTankUE\\Source\\BattleTankUE"
+    "\\BattleTankUE\\Source\\BattleTankUE",
+    "\\BattleTankUE\\Source\\BattleTankUE\\Private",
+    "\\BattleTankUE\\Source\\BattleTankUE\\Public"
   ],
-  "SelectedNode": "\\BattleTankUE",
+  "SelectedNode": "\\BattleTankUE\\Source\\BattleTankUE\\Private\\Tank.cpp",
   "PreviewInSolutionExplorer": false
 }

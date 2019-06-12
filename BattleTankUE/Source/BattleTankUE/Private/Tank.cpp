@@ -2,7 +2,6 @@
 
 #include "Public/TankBarrel.h"
 #include "Public/AimComponent.h"
-#include "Public/TankMevementComponent.h"
 #include "Public/Projectile.h"
 #include "Engine/World.h"
 #include "Public/Tank.h"
@@ -13,8 +12,6 @@ ATank::ATank() {
 	PrimaryActorTick.bCanEverTick = true;
 
 	AimComponent = CreateDefaultSubobject<UAimComponent>(FName("Aiming Component"));
-
-	MovementComponent = CreateDefaultSubobject<UTankMevementComponent>(FName("Movement Component"));
 }
 
 void ATank::SetBarrelReference(UTankBarrel* Barrel) {

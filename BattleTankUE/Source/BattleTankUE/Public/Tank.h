@@ -10,7 +10,6 @@ class UTankBarrel;
 class UAimComponent;
 class AProjectile;
 class UTankTurrent;
-class UTankMevementComponent;
 
 UCLASS()
 class BATTLETANKUE_API ATank : public APawn {
@@ -38,9 +37,6 @@ public:
 
 protected:
 	UAimComponent* AimComponent = nullptr;
-
-	UPROPERTY(BlueprintReadOnly)
-		UTankMevementComponent* MovementComponent = nullptr;
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetBarrelReference(UTankBarrel* Barrel);
