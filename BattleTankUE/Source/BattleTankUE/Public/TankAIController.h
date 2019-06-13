@@ -14,6 +14,9 @@ class BATTLETANKUE_API ATankAIController : public AAIController
 	GENERATED_BODY()
 
 private:
+	float AcceptanceRadius = 3000;
+
+private:
 	ATank* GetControlledTank() const;
 
 	ATank* GetPlayerTank() const;

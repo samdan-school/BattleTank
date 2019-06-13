@@ -3,6 +3,21 @@
 #include "Public/TankTrack.h"
 #include "TankMevementComponent.h"
 
+void UTankMevementComponent::Initialize(UTankTrack* LeftTrack, UTankTrack* RightTrack)
+{
+	this->LeftTrack = LeftTrack;
+	this->RightTrack = RightTrack;
+}
+
+void UTankMevementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+	auto ForwardThrow = FVector::DotProduct(AIForwardIntention, TankForward);
+
+	IntendMoveForward(ForwardThrow);
+}
+
 void UTankMevementComponent::IntendMoveForward(float Throw)
 {
 	if (!LeftTrack || !RightTrack) { return; }
@@ -13,20 +28,15 @@ void UTankMevementComponent::IntendMoveForward(float Throw)
 void UTankMevementComponent::IntendTurnRight(float Throw)
 {
 	if (!LeftTrack || !RightTrack) { return; }
-	float RightConst = 1;
-	float LeftConst = -1.5;
 
-	if (Throw < 0.0f) {
-		RightConst = -1.5;
-		LeftConst = 1;
-	}
-
-	LeftTrack->SetThrottle(RightConst * Throw);
-	RightTrack->SetThrottle(LeftConst * Throw);
+	LeftTrack->SetThrottle(1 * Throw);
+	RightTrack->SetThrottle(-1.5 * Throw);
 }
 
-void UTankMevementComponent::Initialize(UTankTrack* LeftTrack, UTankTrack* RightTrack)
+void UTankMevementComponent::IntendTurnLeft(float Throw)
 {
-	this->LeftTrack = LeftTrack;
-	this->RightTrack = RightTrack;
+	if (!LeftTrack || !RightTrack) { return; }
+
+	LeftTrack->SetThrottle(-1.5 * Throw);
+	RightTrack->SetThrottle(1 * Throw);
 }
