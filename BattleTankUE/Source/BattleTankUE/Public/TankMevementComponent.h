@@ -21,17 +21,14 @@ private:
 
 	/// Methods
 public:
-	UFUNCTION(BlueprintCallable, Category = Setup)
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void Initialize(UTankTrack* LeftTrack, UTankTrack* RightTrack);
 
-	UFUNCTION(BlueprintCallable, Category = Input)
+	UFUNCTION(BlueprintCallable, Category = "Input")
 		void IntendMoveForward(float Throw);
 
-	UFUNCTION(BlueprintCallable, Category = Input)
+	UFUNCTION(BlueprintCallable, Category = "Input")
 		void IntendTurnRight(float Throw);
-
-	UFUNCTION(BlueprintCallable, Category = Input)
-		void IntendTurnLeft(float Throw);
 
 	// TODO check best protection
 	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;

@@ -19,8 +19,10 @@ void ATankAIController::Tick(float DeltaTime)
 
 	MoveToActor(
 		PlayerTank,
-		AcceptanceRadius
+		30
 	);
+
+	//UE_LOG(LogTemp, Warning, TEXT("%s loc"), *PlayerTank->GetActorLocation().ToString());
 
 	AimTowardsPlayer();
 }
