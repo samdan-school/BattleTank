@@ -36,7 +36,8 @@ public:
 		void Fire();
 
 protected:
-	UAimComponent* AimComponent = nullptr;
+	UPROPERTY(BlueprintReadOnly)
+		UAimComponent* AimComponent = nullptr;
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetBarrelReference(UTankBarrel* Barrel);

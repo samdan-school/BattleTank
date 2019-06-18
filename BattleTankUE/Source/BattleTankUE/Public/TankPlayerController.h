@@ -24,7 +24,8 @@ private:
 		float LineTraceRange = 150000.f;
 
 public:
-	ATank* GetControlledTank() const;
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		ATank* GetControlledTank() const;
 
 	virtual void BeginPlay() override;
 

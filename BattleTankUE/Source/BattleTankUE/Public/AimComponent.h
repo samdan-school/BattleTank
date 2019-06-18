@@ -6,6 +6,13 @@
 #include "Components/ActorComponent.h"
 #include "AimComponent.generated.h"
 
+UENUM()
+enum class EFiringStatus : uint8 {
+	Reloading,
+	Aiming,
+	Locked
+};
+
 class UTankBarrel; // Forwared Declaration
 class UTankTurrent; // Forwared Declaration
 
@@ -20,6 +27,10 @@ public:
 	UAimComponent();
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
+
+protected:
+	UPROPERTY(BluePrintReadOnly, category = "State")
+		EFiringStatus FiringState = EFiringStatus::Aiming;
 
 private:
 	UTankBarrel* Barrel = nullptr;
